@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Vispl.Trainee.CricInfo.ViewScheduledMatches.VO.clsMatchScheduleVO>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-container">
+    <h2>Match List</h2>
+    <div class="grid-data">
+        @Html.EJS().Grid("Grid").DataSource((IEnumerable<object>)Model).AllowPaging(true).Columns(col =>
+           {
+               col.Field("FirstTeam").HeaderText("FirstTeam").Width(100).Add();
+               col.Field("SecondTeam").HeaderText("SecondTeam").Width(120).Add();
+               col.Field("ScheduledTime").HeaderText("ScheduledTime").Format("dd-MM-yyyy HH:mm").Width(120).Add();
+               col.Field("Venue").HeaderText("Venue").Width(120).Add();
+               col.Field("TournamentName").HeaderText("Tournament").Width(120).Add();
+           }).AllowSorting(true).AllowFiltering(true).Height("70%").PageSettings(page => page.PageSize(15)).Render()
+    </div>
+</div>
+
+<script>
+    function startMatch(Id) {
+        window.location.href = '@Url.Action("Toss", "MatchSchedule")?Id=' + Id;
+    }
+</script>

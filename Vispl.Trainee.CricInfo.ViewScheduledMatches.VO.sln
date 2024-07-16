@@ -1,0 +1,71 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vispl.Trainee.CricInfo.ViewScheduledMatches.VO", "Vispl.Trainee.CricInfo.ViewScheduledMatches.VO\Vispl.Trainee.CricInfo.ViewScheduledMatches.VO.csproj", "{54409AEE-8484-4D3D-AC32-B0C33023F7E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.ITF", "Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.ITF\Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.ITF.csproj", "{26D14398-CBCA-4E3E-86FB-7D57A488D0AE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9} = {54409AEE-8484-4D3D-AC32-B0C33023F7E9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vispl.Trainee.CricInfo.ViewScheduledMatches.DL", "Vispl.Trainee.CricInfo.ViewScheduledMatches.DL\Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.csproj", "{A05BCD98-4AB6-409F-A406-E0571E570BDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vispl.Trainee.CricInfo.ViewScheduledMatches.BM.ITF", "Vispl.Trainee.CricInfo.ViewScheduledMatches.BM.ITF\Vispl.Trainee.CricInfo.ViewScheduledMatches.BM.ITF.csproj", "{AEAF5FDB-44E0-403D-9A6D-6798FBDA340A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26D14398-CBCA-4E3E-86FB-7D57A488D0AE} = {26D14398-CBCA-4E3E-86FB-7D57A488D0AE}
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9} = {54409AEE-8484-4D3D-AC32-B0C33023F7E9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vispl.Trainee.CricInfo.ViewScheduledMatches.BM", "Vispl.Trainee.CricInfo.ViewScheduledMatches.BM\Vispl.Trainee.CricInfo.ViewScheduledMatches.BM.csproj", "{EB293C1E-57E5-40B7-A660-FF6D2369CC22}"
+	ProjectSection(ProjectDependencies) = postProject
+		{26D14398-CBCA-4E3E-86FB-7D57A488D0AE} = {26D14398-CBCA-4E3E-86FB-7D57A488D0AE}
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9} = {54409AEE-8484-4D3D-AC32-B0C33023F7E9}
+		{AEAF5FDB-44E0-403D-9A6D-6798FBDA340A} = {AEAF5FDB-44E0-403D-9A6D-6798FBDA340A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vispl.Trainee.CricInfo.ViewScheduledMatches.UI", "Vispl.Trainee.CricInfo.ViewScheduledMatches.UI\Vispl.Trainee.CricInfo.ViewScheduledMatches.UI.csproj", "{24B3FE34-689E-4258-8465-E385D4D2F094}"
+	ProjectSection(ProjectDependencies) = postProject
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9} = {54409AEE-8484-4D3D-AC32-B0C33023F7E9}
+		{AEAF5FDB-44E0-403D-9A6D-6798FBDA340A} = {AEAF5FDB-44E0-403D-9A6D-6798FBDA340A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54409AEE-8484-4D3D-AC32-B0C33023F7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26D14398-CBCA-4E3E-86FB-7D57A488D0AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26D14398-CBCA-4E3E-86FB-7D57A488D0AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26D14398-CBCA-4E3E-86FB-7D57A488D0AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26D14398-CBCA-4E3E-86FB-7D57A488D0AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A05BCD98-4AB6-409F-A406-E0571E570BDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A05BCD98-4AB6-409F-A406-E0571E570BDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A05BCD98-4AB6-409F-A406-E0571E570BDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A05BCD98-4AB6-409F-A406-E0571E570BDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEAF5FDB-44E0-403D-9A6D-6798FBDA340A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEAF5FDB-44E0-403D-9A6D-6798FBDA340A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEAF5FDB-44E0-403D-9A6D-6798FBDA340A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEAF5FDB-44E0-403D-9A6D-6798FBDA340A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB293C1E-57E5-40B7-A660-FF6D2369CC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB293C1E-57E5-40B7-A660-FF6D2369CC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB293C1E-57E5-40B7-A660-FF6D2369CC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB293C1E-57E5-40B7-A660-FF6D2369CC22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24B3FE34-689E-4258-8465-E385D4D2F094}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24B3FE34-689E-4258-8465-E385D4D2F094}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24B3FE34-689E-4258-8465-E385D4D2F094}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24B3FE34-689E-4258-8465-E385D4D2F094}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5B4307EB-0736-4859-8289-498E0E12A8B7}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,81 @@
+Style.css
+body {
+    margin: 0 !important;
+}
+
+html {
+    background-color: aliceblue;
+}
+
+.navbar {
+    background-color: #001845;
+    width: 100%;
+}
+
+.text-danger {
+    color: red; /* for validation */
+}
+
+.form-input {
+    padding: 0.5em;
+    width: 100%;
+}
+
+
+.form-container {
+    max-width: 75%;
+    margin: 0 auto;
+    padding: 0 1.25em 0.625em 1.25em;
+    background-color: whitesmoke;
+    margin-top: 1em;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.1);
+    border-radius: 0.5em;
+    max-height: 80vh;
+    overflow: auto;
+    padding-right: 1em;
+}
+
+    .form-container h2 {
+        text-align: center;
+    }
+
+label {
+    font-weight: bold;
+}
+
+.btn-Submit {
+    background-color: #001845;
+    color: #fff;
+    border: none;
+    padding: 0.75em 1.25em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    width: 25%;
+    height: 2.5em;
+}
+
+    .btn-Submit:hover {
+        background-color: #005C78;
+    }
+
+.grid-header {
+    text-align: center;
+    font-size: 1em;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn-secondary {
+    background-color: #1C1C84;
+    color: #fff;
+    border: none;
+    padding: 0.625em 1.25em;
+    border-radius: 0.5em;
+    cursor: pointer;
+    width: 25%;
+    float: right;
+    height: 2.5em;
+}
