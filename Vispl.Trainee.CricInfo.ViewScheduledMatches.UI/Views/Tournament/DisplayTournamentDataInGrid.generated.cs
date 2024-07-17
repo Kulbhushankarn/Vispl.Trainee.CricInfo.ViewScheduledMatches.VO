@@ -139,6 +139,11 @@ WriteLiteral(@"',
                                 type: 'GET',
                                 data: { tournamentID: tournamentID },
                                 success: function (data) {
+                                    // Format ScheduledTime here
+                                    data.forEach(function (match) {
+                                        match.ScheduledTime = formatDate(match.ScheduledTime);
+                                    });
+
                                     childGridObj.dataSource = data;
                                     childGridObj.refresh();
                                     tournaments.find(t => t.TournamentID === tournamentID).isLoaded = true;
@@ -158,7 +163,7 @@ WriteLiteral(@"',
             window.location.href = '");
 
             
-            #line 92 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
+            #line 97 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
                                Write(Url.Action("Toss", "MatchSchedule"));
 
             
