@@ -18,12 +18,6 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.BM
             return DlObj.GetAllMatchSchedulesWithNames();
         }
 
-        public List<clsMatchScheduleVO> GetMatchesByTournament(int tournamentID)
-        {
-            DlObj = clsCricInfoDI.GetObject<IclsMatchScheduleDL>("Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.clsViewTournamentDL");
-            return DlObj.GetMatchesByTournament(tournamentID);
-        }
-
         public List<KeyValuePair<int, string>> GetTeams()
         {
             DlObj = clsCricInfoDI.GetObject<IclsMatchScheduleDL>("Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.clsMatchScheduleDL");

@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Vispl.Trainee.CricInfo.ViewScheduledMatches.VO.clsTournamentVO>
+
+@{
+    ViewBag.Title = "DisplayTournamentDataInGrid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="form-container">
+    <h2>Tournament List</h2>
+
+    <div id="TournamentGrid"></div>
+
+    @section scripts {
+        <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/material.css">
+
+        <script>
+        function formatDate(serializedDate) {
+            var date = new Date(parseInt(serializedDate.substr(6)));
+            var day = ('0' + date.getDate()).slice(-2);
+            var month = ('0' + (date.getMonth() + 1)).slice(-2);
+            var year = date.getFullYear();
+            var hours = ('0' + date.getHours()).slice(-2);
+            var minutes = ('0' + date.getMinutes()).slice(-2);
+
+            return `${day}-${month}-${year} ${hours}:${minutes}`;
+        }
+        $(function () {
+            var tournaments = @Html.Raw(Json.Encode(Model));
+
+            // Apply date formatting to the tournaments data
+            tournaments.forEach(function (tournament) {
+                tournament.StartDate = formatDate(tournament.StartDate);
+                tournament.EndDate = formatDate(tournament.EndDate);
+
+            });
+
+            var grid = new ej.grids.Grid({
+                dataSource: tournaments,
+                allowPaging: true,
+                allowSorting: true,
+                allowFiltering: true,
+                toolbar: ['Search'],
+                columns: [
+                    { field: 'TournamentID', headerText: 'ID', width: '50' },
+                    { field: 'TournamentName', headerText: 'Name', width: '200' },
+                    { field: 'StartDate', headerText: 'Start Date', width: '150'},
+                    { field: 'EndDate', headerText: 'End Date', width: '150' },
+                    { field: 'MatchType', headerText: 'Match Type', width: '150' },
+
+                ],
+                childGrid: {
+                    dataSource: [],
+                    queryString: 'TournamentID',
+                    columns: [
+                        { field: 'FirstTeam', headerText: 'First Team', width: '150' },
+                        { field: 'SecondTeam', headerText: 'Second Team', width: '150' },
+                        { field: 'ScheduledTime', headerText: 'Scheduled Time', width: '150' },
+                        { field: 'Venue', headerText: 'Venue', width: '150' },
+                                            {
+                        headerText: 'Action', width: '100', template: '#StartTheMatch'
+                    }
+                    ],
+                    dataBound: function () {
+                        var childGridObj = this;
+                        var parentRecord = this.parentDetails.parentRowData;
+                        var tournamentID = parentRecord.TournamentID;
+
+                        // Check if the tournament has already been loaded
+                        if (!tournaments.find(t => t.TournamentID === tournamentID).isLoaded) {
+                            $.ajax({
+                                url: '@Url.Action("GetMatchesByTournament", "Tournament")',
+                                type: 'GET',
+                                data: { tournamentID: tournamentID },
+                                success: function (data) {
+                                    childGridObj.dataSource = data;
+                                    childGridObj.refresh();
+                                    tournaments.find(t => t.TournamentID === tournamentID).isLoaded = true;
+                                },
+                                error: function (xhr, status, error) {
+                                    /*alert('Error fetching matches: ' + error);*/
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+            grid.appendTo('#TournamentGrid');
+        });
+
+        function startMatch(Id) {
+            window.location.href = '@Url.Action("Toss", "MatchSchedule")?Id=' + Id;
+        }
+        </script>
+
+        <script type="text/x-template" id="StartTheMatch">
+            <button class="btn-submit" onclick="startMatch('#=TournamentID#')">Start Match</button>
+        </script>
+    }
+</div>
+

@@ -14,10 +14,14 @@
                col.Field("ScheduledTime").HeaderText("ScheduledTime").Format("dd-MM-yyyy HH:mm").Width(120).Add();
                col.Field("Venue").HeaderText("Venue").Width(120).Add();
                col.Field("TournamentName").HeaderText("Tournament").Width(120).Add();
+               col.HeaderText("Action").Width("100").Template("#StartTheMatch").Add();
            }).AllowSorting(true).AllowFiltering(true).Height("70%").PageSettings(page => page.PageSize(15)).Render()
     </div>
 </div>
 
+<script type="text/x-template" id="StartTheMatch">
+    <button class="btn-submit" onclick="startMatch('${ID}')">Toss</button>
+</script>
 <script>
     function startMatch(Id) {
         window.location.href = '@Url.Action("Toss", "MatchSchedule")?Id=' + Id;

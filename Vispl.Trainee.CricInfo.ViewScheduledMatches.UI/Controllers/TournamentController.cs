@@ -1,7 +1,7 @@
-﻿using System;
+﻿// TournamentController.cs
+
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Vispl.Trainee.CricInfo.DI;
 using Vispl.Trainee.CricInfo.ViewScheduledMatches.VO;
@@ -11,13 +11,13 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.UI.Controllers
 {
     public class TournamentController : Controller
     {
-        public IclsMatchScheduleBM BmObj { get; set; }
         public IclsTournamentBM bmObj { get; set; }
+
         public TournamentController()
         {
-            BmObj = clsCricInfoDI.GetObject<IclsMatchScheduleBM>("Vispl.Trainee.CricInfo.ViewMatchSchdule.BM.clsMatchScheduleBM");
-            bmObj = clsCricInfoDI.GetObject<IclsTournamentBM>("Vispl.Trainee.CricInfo.ViewMatchSchdule.BM.clsTournamentBM");
+            bmObj = clsCricInfoDI.GetObject<IclsTournamentBM>("Vispl.Trainee.CricInfo.ViewScheduledMatches.BM.clsTournamentBM");
         }
+
         public ActionResult DisplayTournamentDataInGrid()
         {
             List<clsTournamentVO> tournaments;
@@ -34,20 +34,18 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.UI.Controllers
             return View(tournaments);
         }
 
-        //public ActionResult GetMatchesByTournament(int tournamentID)
-        //{
-        //    List<clsMatchScheduleVO> matches;
-        //    try
-        //    {
-        //        matches = bmObj.GetMatchesByTournament(tournamentID);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        matches = new List<clsMatchScheduleVO>();
-        //        ModelState.AddModelError("", "Error retrieving matches: " + ex.Message);
-        //    }
-
-        //    return Json(matches, JsonRequestBehavior.AllowGet);
-        //}
+        public ActionResult GetMatchesByTournament(int tournamentID)
+        {
+            try
+            {
+                List<clsMatchScheduleVO> matches = bmObj.GetMatchesByTournament(tournamentID);
+                return Json(matches, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { error = "Error retrieving matches: " + ex.Message });
+            }
+        }
     }
+
 }

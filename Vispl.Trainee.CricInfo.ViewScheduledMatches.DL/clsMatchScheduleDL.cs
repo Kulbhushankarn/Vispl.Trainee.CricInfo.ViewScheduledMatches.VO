@@ -103,48 +103,5 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.DL
 
             return teams;
         }
-
-        public List<clsMatchScheduleVO> GetMatchesByTournament(int tournamentID)
-        {
-            getConnection();
-            conn = new SqlConnection(connectionString);
-
-            List<clsMatchScheduleVO> matchSchedules = new List<clsMatchScheduleVO>();
-            string query = $@"SELECT 
-                                ms.{MatchSchedule.MatchId}, 
-                                t1.{Team.Name} AS FirstTeamName, 
-                                t2.{Team.Name} AS SecondTeamName, 
-                                ms.{MatchSchedule.ScheduledTime}, 
-                                ms.{MatchSchedule.Venue} 
-                            FROM {Tbl.MatchSchedule} ms
-                            JOIN {Tbl.Team} t1 ON ms.{MatchSchedule.FirstTeam} = t1.{Team.ID}
-                            JOIN {Tbl.Team} t2 ON ms.{MatchSchedule.SecondTeam} = t2.{Team.ID}
-                            WHERE ms.{MatchSchedule.TournamentId} = @TournamentID";
-            Adapter = new SqlDataAdapter(query, conn);
-            Adapter.SelectCommand.Parameters.AddWithValue("@TournamentID", tournamentID);
-
-            DataTable dataTable = new DataTable();
-            Adapter.Fill(dataTable);
-            Adapter.Dispose();
-            Adapter = null;
-
-            foreach (DataRow row in dataTable.Rows)
-            {
-                clsMatchScheduleVO matchSchedule = new clsMatchScheduleVO
-                {
-                    ID = Convert.ToInt32(row["MatchId"]),
-                    FirstTeam = row["FirstTeam"].ToString(),
-                    SecondTeam = row["SecondTeam"].ToString(),
-                    // ScheduledTime = row.IsNull(MatchSchedule.ScheduledTime) ? DateTime.MinValue : Convert.ToDateTime(row[MatchSchedule.ScheduledTime]),
-                    Venue = row.IsNull(MatchSchedule.Venue) ? null : row[MatchSchedule.Venue].ToString(),
-                    TournamentID = tournamentID,
-                    TournamentName = row[AddTournament.Name].ToString()
-                };
-
-                matchSchedules.Add(matchSchedule);
-            }
-
-            return matchSchedules;
-        }
     }
 }

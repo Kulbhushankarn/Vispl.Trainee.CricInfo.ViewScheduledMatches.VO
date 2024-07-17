@@ -9,5 +9,7 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.BM.ITF
         IclsViewTournamentDL DlObj { get; set; }
 
         List<clsTournamentVO> GetAllTournaments();
+
+        List<clsMatchScheduleVO> GetMatchesByTournament(int tournamentID);
     }
 }

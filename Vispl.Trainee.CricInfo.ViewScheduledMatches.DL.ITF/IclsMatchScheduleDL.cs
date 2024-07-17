@@ -9,7 +9,6 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.ITF
 
         List<clsMatchScheduleVO> GetAllMatchSchedulesWithNames();
         void getConnection();
-        List<clsMatchScheduleVO> GetMatchesByTournament(int tournamentID);
         List<KeyValuePair<int, string>> GetTeams();
     }
 }

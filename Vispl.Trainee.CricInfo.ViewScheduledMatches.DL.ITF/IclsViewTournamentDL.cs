@@ -5,9 +5,11 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.ITF
 {
     public interface IclsViewTournamentDL
     {
-        string connectionString { get; set; }
+/*        string connectionString { get; set; }
 
-        void getConnection();
+        void getConnection();*/
         List<clsTournamentVO> GetTournament();
+
+        List<clsMatchScheduleVO> GetMatchesByTournament(int tournamentID);
     }
 }

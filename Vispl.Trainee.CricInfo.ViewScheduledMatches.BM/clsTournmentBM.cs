@@ -14,7 +14,7 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.BM
         {
             try
             {
-                DlObj = clsCricInfoDI.GetObject<IclsViewTournamentDL>("Vispl.Trainee.CricInfo.DL.clsViewTournamentDL");
+                DlObj = clsCricInfoDI.GetObject<IclsViewTournamentDL>("Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.clsViewTournamentDL");
                 return DlObj.GetTournament();
             }
             catch (Exception ex)
@@ -23,6 +23,18 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.BM
             }
         }
 
+        public List<clsMatchScheduleVO> GetMatchesByTournament(int tournamentID)
+        {
+            try
+            {
+                var dlObj = clsCricInfoDI.GetObject<IclsViewTournamentDL>("Vispl.Trainee.CricInfo.ViewScheduledMatches.DL.clsViewTournamentDL");
+                return dlObj.GetMatchesByTournament(tournamentID);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Error fetching matches by tournament ID", ex);
+            }
+        }
 
     }
 }
