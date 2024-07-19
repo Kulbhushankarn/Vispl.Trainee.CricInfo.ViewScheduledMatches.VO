@@ -10,11 +10,9 @@
 
     <div id="TournamentGrid"></div>
 
-
-
     @section scripts {
         <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/material.css">
+        <link rel="stylesheet" href="~/Content/ej2/bootstrap5.css">
 
         <script>
         function formatDate(serializedDate) {
@@ -27,14 +25,15 @@
 
             return `${day}-${month}-${year} ${hours}:${minutes}`;
         }
+
         $(function () {
             var tournaments = @Html.Raw(Json.Encode(Model));
+            var isUserLoggedIn = @Html.Raw(Json.Encode(ViewBag.IsUserLoggedIn));
 
             // Apply date formatting to the tournaments data
             tournaments.forEach(function (tournament) {
                 tournament.StartDate = formatDate(tournament.StartDate);
                 tournament.EndDate = formatDate(tournament.EndDate);
-
             });
 
             var grid = new ej.grids.Grid({
@@ -46,22 +45,20 @@
                 columns: [
                     { field: 'TournamentID', headerText: 'ID', width: '50' },
                     { field: 'TournamentName', headerText: 'Name', width: '200' },
-                    { field: 'StartDate', headerText: 'Start Date', width: '150'},
+                    { field: 'StartDate', headerText: 'Start Date', width: '150' },
                     { field: 'EndDate', headerText: 'End Date', width: '150' },
                     { field: 'MatchType', headerText: 'Match Type', width: '150' },
-
                 ],
                 childGrid: {
-                    dataSource: [],
                     queryString: 'TournamentID',
                     columns: [
                         { field: 'FirstTeam', headerText: 'First Team', width: '150' },
                         { field: 'SecondTeam', headerText: 'Second Team', width: '150' },
                         { field: 'ScheduledTime', headerText: 'Scheduled Time', width: '150' },
                         { field: 'Venue', headerText: 'Venue', width: '150' },
-                                            {
-                        headerText: 'Action', width: '100', template: '#StartTheMatch'
-                    }
+                        {
+                            headerText: 'Action', width: '100', template: isUserLoggedIn ? '<button class="btn-submit" onclick="startMatch(${TournamentID})">Start Match</button>' : ''
+                        }
                     ],
                     dataBound: function () {
                         var childGridObj = this;
@@ -75,6 +72,8 @@
                                 type: 'GET',
                                 data: { tournamentID: tournamentID },
                                 success: function (data) {
+                                    console.log("Matches data fetched: ", data); // Log the fetched data
+
                                     // Format ScheduledTime here
                                     data.forEach(function (match) {
                                         match.ScheduledTime = formatDate(match.ScheduledTime);
@@ -85,7 +84,7 @@
                                     tournaments.find(t => t.TournamentID === tournamentID).isLoaded = true;
                                 },
                                 error: function (xhr, status, error) {
-                                    /*alert('Error fetching matches: ' + error);*/
+                                    console.error('Error fetching matches: ', error); // Log any errors
                                 }
                             });
                         }
@@ -95,14 +94,9 @@
             grid.appendTo('#TournamentGrid');
         });
 
-        function startMatch(Id) {
-            window.location.href = '@Url.Action("Toss", "MatchSchedule")?Id=' + Id;
+        function startMatch(id) {
+            window.location.href = '@Url.Action("Index", "Toss")?Id=' + id;
         }
-        </script>
-
-        <script type="text/x-template" id="StartTheMatch">
-            <button class="btn-submit" onclick="startMatch('#=TournamentID#')">Start Match</button>
         </script>
     }
 </div>
-

@@ -68,30 +68,12 @@ WriteLiteral("        ");
                col.Field("ScheduledTime").HeaderText("ScheduledTime").Format("dd-MM-yyyy HH:mm").Width(120).Add();
                col.Field("Venue").HeaderText("Venue").Width(120).Add();
                col.Field("TournamentName").HeaderText("Tournament").Width(120).Add();
-               col.HeaderText("Action").Width("100").Template("#StartTheMatch").Add();
            }).AllowSorting(true).AllowFiltering(true).Height("70%").PageSettings(page => page.PageSize(15)).Render());
 
             
             #line default
             #line hidden
-WriteLiteral("\r\n    </div>\r\n</div>\r\n\r\n<script");
-
-WriteLiteral(" type=\"text/x-template\"");
-
-WriteLiteral(" id=\"StartTheMatch\"");
-
-WriteLiteral(">\r\n    <button class=\"btn-submit\" onclick=\"startMatch(\'${ID}\')\">Toss</button>\r\n</" +
-"script>\r\n<script>\r\n    function startMatch(Id) {\r\n        window.location.href =" +
-" \'");
-
-            
-            #line 27 "..\..\Views\MatchSchedule\DisplayMatchDataInGrid.cshtml"
-                           Write(Url.Action("Toss", "MatchSchedule"));
-
-            
-            #line default
-            #line hidden
-WriteLiteral("?Id=\' + Id;\r\n    }\r\n</script>\r\n");
+WriteLiteral("\r\n    </div>\r\n</div>\r\n\r\n");
 
         }
     }

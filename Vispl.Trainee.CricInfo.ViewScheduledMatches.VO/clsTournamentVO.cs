@@ -10,7 +10,7 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.VO
         public DateTimeOffset StartDate { get; set; }
         public DateTimeOffset EndDate { get; set; }
         public int MatchTypeId { get; set; }
-        public int MatchType { get; set; }
+        public string MatchType { get; set; }
         public List<clsMatchScheduleVO> Teams { get; set; }
 /*        public List<clsTeamsVO> TeamsName { get; set; }*/
         public string FirstTeam { get; set; }

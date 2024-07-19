@@ -29,7 +29,7 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.DL
                     $"t.{AddTournament.Name} AS TournamentName, " +
                     $"t.{AddTournament.StartDate}, " +
                     $"t.{AddTournament.EndDate}, " +
-                    $"t.{AddTournament.TypeId}, " +
+                    $"t.{TournamentType.TypeId}, " +
                     $"tt.{TournamentType.TypeName} AS MatchType " +
                     $"FROM {Tbl.AddTournament} t " +
                     $"LEFT JOIN {Tbl.TournamentType} tt " +
@@ -49,7 +49,7 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.DL
                             StartDate = row.Field<DateTimeOffset>(AddTournament.StartDate),
                             EndDate = row.Field<DateTimeOffset>(AddTournament.EndDate),
                             MatchTypeId = row.Field<int?>(AddTournament.TypeId) ?? 0,
-                            //MatchType = row["MatchType"].ToString()
+                            MatchType = row["MatchType"].ToString()
                         };
 
                         tournaments.Add(tournament);

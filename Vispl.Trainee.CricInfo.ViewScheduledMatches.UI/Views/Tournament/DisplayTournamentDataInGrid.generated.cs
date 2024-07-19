@@ -74,7 +74,10 @@ WriteLiteral("></script>\r\n        <link");
 
 WriteLiteral(" rel=\"stylesheet\"");
 
-WriteLiteral(" href=\"https://cdn.syncfusion.com/ej2/material.css\"");
+WriteAttribute("href", Tuple.Create(" href=\"", 429), Tuple.Create("\"", 464)
+, Tuple.Create(Tuple.Create("", 436), Tuple.Create<System.Object, System.Int32>(Href("~/Content/ej2/bootstrap5.css")
+, 436), false)
+);
 
 WriteLiteral(@">
 
@@ -89,12 +92,22 @@ WriteLiteral(@">
 
             return `${day}-${month}-${year} ${hours}:${minutes}`;
         }
+
         $(function () {
             var tournaments = ");
 
             
-            #line 29 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
+            #line 30 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
                          Write(Html.Raw(Json.Encode(Model)));
+
+            
+            #line default
+            #line hidden
+WriteLiteral(";\r\n            var isUserLoggedIn = ");
+
+            
+            #line 31 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
+                            Write(Html.Raw(Json.Encode(ViewBag.IsUserLoggedIn)));
 
             
             #line default
@@ -102,34 +115,34 @@ WriteLiteral(@">
 WriteLiteral(";\r\n\r\n            // Apply date formatting to the tournaments data\r\n            to" +
 "urnaments.forEach(function (tournament) {\r\n                tournament.StartDate " +
 "= formatDate(tournament.StartDate);\r\n                tournament.EndDate = format" +
-"Date(tournament.EndDate);\r\n\r\n            });\r\n\r\n            var grid = new ej.gr" +
-"ids.Grid({\r\n                dataSource: tournaments,\r\n                allowPagin" +
-"g: true,\r\n                allowSorting: true,\r\n                allowFiltering: t" +
-"rue,\r\n                toolbar: [\'Search\'],\r\n                columns: [\r\n        " +
-"            { field: \'TournamentID\', headerText: \'ID\', width: \'50\' },\r\n         " +
-"           { field: \'TournamentName\', headerText: \'Name\', width: \'200\' },\r\n     " +
-"               { field: \'StartDate\', headerText: \'Start Date\', width: \'150\'},\r\n " +
-"                   { field: \'EndDate\', headerText: \'End Date\', width: \'150\' },\r\n" +
-"                    { field: \'MatchType\', headerText: \'Match Type\', width: \'150\'" +
-" },\r\n\r\n                ],\r\n                childGrid: {\r\n                    dat" +
-"aSource: [],\r\n                    queryString: \'TournamentID\',\r\n                " +
-"    columns: [\r\n                        { field: \'FirstTeam\', headerText: \'First" +
-" Team\', width: \'150\' },\r\n                        { field: \'SecondTeam\', headerTe" +
-"xt: \'Second Team\', width: \'150\' },\r\n                        { field: \'ScheduledT" +
-"ime\', headerText: \'Scheduled Time\', width: \'150\' },\r\n                        { f" +
-"ield: \'Venue\', headerText: \'Venue\', width: \'150\' },\r\n                           " +
-"                 {\r\n                        headerText: \'Action\', width: \'100\', " +
-"template: \'#StartTheMatch\'\r\n                    }\r\n                    ],\r\n     " +
-"               dataBound: function () {\r\n                        var childGridOb" +
-"j = this;\r\n                        var parentRecord = this.parentDetails.parentR" +
-"owData;\r\n                        var tournamentID = parentRecord.TournamentID;\r\n" +
-"\r\n                        // Check if the tournament has already been loaded\r\n  " +
-"                      if (!tournaments.find(t => t.TournamentID === tournamentID" +
-").isLoaded) {\r\n                            $.ajax({\r\n                           " +
-"     url: \'");
+"Date(tournament.EndDate);\r\n            });\r\n\r\n            var grid = new ej.grid" +
+"s.Grid({\r\n                dataSource: tournaments,\r\n                allowPaging:" +
+" true,\r\n                allowSorting: true,\r\n                allowFiltering: tru" +
+"e,\r\n                toolbar: [\'Search\'],\r\n                columns: [\r\n          " +
+"          { field: \'TournamentID\', headerText: \'ID\', width: \'50\' },\r\n           " +
+"         { field: \'TournamentName\', headerText: \'Name\', width: \'200\' },\r\n       " +
+"             { field: \'StartDate\', headerText: \'Start Date\', width: \'150\' },\r\n  " +
+"                  { field: \'EndDate\', headerText: \'End Date\', width: \'150\' },\r\n " +
+"                   { field: \'MatchType\', headerText: \'Match Type\', width: \'150\' " +
+"},\r\n                ],\r\n                childGrid: {\r\n                    queryS" +
+"tring: \'TournamentID\',\r\n                    columns: [\r\n                        " +
+"{ field: \'FirstTeam\', headerText: \'First Team\', width: \'150\' },\r\n               " +
+"         { field: \'SecondTeam\', headerText: \'Second Team\', width: \'150\' },\r\n    " +
+"                    { field: \'ScheduledTime\', headerText: \'Scheduled Time\', widt" +
+"h: \'150\' },\r\n                        { field: \'Venue\', headerText: \'Venue\', widt" +
+"h: \'150\' },\r\n                        {\r\n                            headerText: " +
+"\'Action\', width: \'100\', template: isUserLoggedIn ? \'<button class=\"btn-submit\" o" +
+"nclick=\"startMatch(${TournamentID})\">Start Match</button>\' : \'\'\r\n               " +
+"         }\r\n                    ],\r\n                    dataBound: function () {" +
+"\r\n                        var childGridObj = this;\r\n                        var " +
+"parentRecord = this.parentDetails.parentRowData;\r\n                        var to" +
+"urnamentID = parentRecord.TournamentID;\r\n\r\n                        // Check if t" +
+"he tournament has already been loaded\r\n                        if (!tournaments." +
+"find(t => t.TournamentID === tournamentID).isLoaded) {\r\n                        " +
+"    $.ajax({\r\n                                url: \'");
 
             
-            #line 72 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
+            #line 71 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
                                  Write(Url.Action("GetMatchesByTournament", "Tournament"));
 
             
@@ -139,6 +152,8 @@ WriteLiteral(@"',
                                 type: 'GET',
                                 data: { tournamentID: tournamentID },
                                 success: function (data) {
+                                    console.log(""Matches data fetched: "", data); // Log the fetched data
+
                                     // Format ScheduledTime here
                                     data.forEach(function (match) {
                                         match.ScheduledTime = formatDate(match.ScheduledTime);
@@ -149,7 +164,7 @@ WriteLiteral(@"',
                                     tournaments.find(t => t.TournamentID === tournamentID).isLoaded = true;
                                 },
                                 error: function (xhr, status, error) {
-                                    /*alert('Error fetching matches: ' + error);*/
+                                    console.error('Error fetching matches: ', error); // Log any errors
                                 }
                             });
                         }
@@ -159,28 +174,21 @@ WriteLiteral(@"',
             grid.appendTo('#TournamentGrid');
         });
 
-        function startMatch(Id) {
+        function startMatch(id) {
             window.location.href = '");
 
             
-            #line 97 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
-                               Write(Url.Action("Toss", "MatchSchedule"));
+            #line 98 "..\..\Views\Tournament\DisplayTournamentDataInGrid.cshtml"
+                               Write(Url.Action("Index", "Toss"));
 
             
             #line default
             #line hidden
-WriteLiteral("?Id=\' + Id;\r\n        }\r\n        </script>\r\n\r\n        <script");
-
-WriteLiteral(" type=\"text/x-template\"");
-
-WriteLiteral(" id=\"StartTheMatch\"");
-
-WriteLiteral(">\r\n            <button class=\"btn-submit\" onclick=\"startMatch(\'#=TournamentID#\')\"" +
-">Start Match</button>\r\n        </script>\r\n    ");
+WriteLiteral("?Id=\' + id;\r\n        }\r\n        </script>\r\n    ");
 
 });
 
-WriteLiteral("</div>\r\n\r\n");
+WriteLiteral("</div>\r\n");
 
         }
     }

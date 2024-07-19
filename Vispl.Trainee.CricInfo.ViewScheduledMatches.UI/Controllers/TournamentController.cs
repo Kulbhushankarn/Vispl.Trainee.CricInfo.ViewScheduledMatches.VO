@@ -1,11 +1,9 @@
-﻿// TournamentController.cs
-
-using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Vispl.Trainee.CricInfo.DI;
 using Vispl.Trainee.CricInfo.ViewScheduledMatches.VO;
 using Vispl.Trainee.CricInfo.ViewScheduledMatches.BM.ITF;
+using System.Collections.Generic;
+using System;
 
 namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.UI.Controllers
 {
@@ -31,6 +29,8 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.UI.Controllers
                 ModelState.AddModelError("", "Error retrieving tournaments: " + ex.Message);
             }
 
+            ViewBag.IsUserLoggedIn = User.Identity.IsAuthenticated;
+
             return View(tournaments);
         }
 
@@ -47,5 +47,4 @@ namespace Vispl.Trainee.CricInfo.ViewScheduledMatches.UI.Controllers
             }
         }
     }
-
 }
